@@ -11,6 +11,7 @@ module OmniAuth
       args [:secret]
       
       option :secret, nil
+      option :jwks_loader
       option :algorithm, 'HS256'
       option :uid_claim, 'email'
       option :required_claims, %w(name email)
@@ -23,7 +24,8 @@ module OmniAuth
       end
       
       def decoded
-        @decoded ||= ::JWT.decode(request.params['jwt'], options.secret, true, { algorithm: options.algorithm })[0]
+        @decoded ||= ::JWT.decode(request.params['jwt'], options.secret, true,
+                                 { algorithm: options.algorithm, jwks: options.jwks_loader })[0]
         (options.required_claims || []).each do |field|
           raise ClaimInvalid.new("Missing required '#{field}' claim.") if !@decoded.key?(field.to_s)
         end
