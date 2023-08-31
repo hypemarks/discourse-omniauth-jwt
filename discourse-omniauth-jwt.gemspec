@@ -5,7 +5,7 @@ require 'omniauth/jwt/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "discourse-omniauth-jwt"
-  spec.version       = Omniauth::JWT::VERSION
+  spec.version       = OmniAuth::JWT::VERSION
   spec.authors       = ["Michael Bleigh", "Robin Ward"]
   spec.email         = ["mbleigh@mbleigh.com", "robin.ward@gmail.com"]
   spec.description   = %q{An OmniAuth strategy to accept JWT-based single sign-on.}
